@@ -1,0 +1,21 @@
+# Maven
+target/
+
+# VS Code
+.vscode/
+
+# Environment / secrets
+application-local.properties
+.env
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+
+# React / Node
+frontend/node_modules/
+frontend/.env
+frontend/build/
+frontend/dist/
