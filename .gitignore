@@ -8,6 +8,13 @@ target/
 application-local.properties
 .env
 
+# Personal interview study notes - not project documentation
+INTERVIEW_PREP.md
+
+# Claude Code local config/memory - personal, not project documentation
+.claude/
+CLAUDE.md
+
 # macOS
 .DS_Store
 

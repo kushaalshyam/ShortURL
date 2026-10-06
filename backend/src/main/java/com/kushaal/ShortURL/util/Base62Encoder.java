@@ -1,22 +1,27 @@
 package com.kushaal.ShortURL.util;
 
 import org.springframework.stereotype.Component;
-import java.util.Random;
 
 @Component
 public class Base62Encoder {
 
-    private static final String CHARS="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    private static final int CODE_LENGTH=6;
-    private final Random random = new Random();
+    private static final String CHARS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    private static final int BASE = CHARS.length();
 
-    public String generate(){
-        StringBuilder sb = new StringBuilder(CODE_LENGTH);
-        for (int i=0; i<CODE_LENGTH;i++){
-            sb.append(CHARS.charAt(random.nextInt(CHARS.length())));
+    public String encode(long id) {
+        if (id < 0) {
+            throw new IllegalArgumentException("id must be non-negative: " + id);
         }
-        return sb.toString();
-    }
+        if (id == 0) {
+            return String.valueOf(CHARS.charAt(0));
+        }
 
-    
+        StringBuilder sb = new StringBuilder();
+        while (id > 0) {
+            int remainder = (int) (id % BASE);
+            sb.append(CHARS.charAt(remainder));
+            id /= BASE;
+        }
+        return sb.reverse().toString();
+    }
 }
